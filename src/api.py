@@ -46,11 +46,12 @@ class Product(BaseModel):
     product_id: int
     name: str = Field(min_length=1)
     quantity: int = Field(ge=0)
-
+    price: float = Field(ge=0)
 
 class ProductUpdate(BaseModel):
     name: Optional[str] = Field(default=None, min_length=1)
     quantity: Optional[int] = Field(default=None, ge=0)
+    price: Optional[float] = Field(default=None, gt=0)
 
 
 # ==========================================
@@ -141,7 +142,8 @@ def update_product(product_id: int, product: Product):
             updated_product = {
                 "product_id": product_id,
                 "name": product.name,
-                "quantity": product.quantity
+                "quantity": product.quantity,
+                "price": product.price
             }
 
             inventory[index] = updated_product
@@ -169,7 +171,6 @@ def patch_product(
     product_id: int,
     product: ProductUpdate
 ):
-
     inventory = load_inventory()
 
     for existing_product in inventory:
@@ -194,7 +195,6 @@ def patch_product(
         status_code=404,
         detail="Product not found"
     )
-
 
 # ==========================================
 # DELETE - DELETE PRODUCT
