@@ -144,11 +144,7 @@ class QuotationRequest(BaseModel):
 
 @app.get("/")
 def home():
-
-    return {
-        "success": True,
-        "message": "Inventory & Quotation API is running"
-    }
+    return {"message": "MSME Quotation Engine API chalu chhe"}
 
 
 # ============================================================
