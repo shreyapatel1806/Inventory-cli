@@ -14,7 +14,10 @@ def main():
 
     while True:
 
-        print("\n================ Inventory Management ================")
+        print(
+            "\n================ Inventory Management ================"
+        )
+
         print("1. Add Product")
         print("2. Update Stock")
         print("3. Remove Product")
@@ -22,40 +25,64 @@ def main():
         print("5. Search Inventory")
         print("6. Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input(
+            "Enter your choice: "
+        )
 
         try:
 
+            # ==================================================
+            # ADD PRODUCT
+            # ==================================================
+
             if choice == "1":
 
-                product_id = int(
-                    input("Product ID: ")
-                )
+                product_id = input(
+                    "Product ID: "
+                ).strip()
 
-                name = input("Product Name: ")
+                name = input(
+                    "Product Name: "
+                ).strip()
 
                 quantity = int(
-                    input("Quantity: ")
+                    input(
+                        "Quantity: "
+                    )
+                )
+
+                price = float(
+                    input(
+                        "Price: "
+                    )
                 )
 
                 add_product(
                     inventory,
                     product_id,
                     name,
-                    quantity
+                    quantity,
+                    price
                 )
 
-                print("✅ Product added successfully")
+                print(
+                    "Product added successfully."
+                )
 
+            # ==================================================
+            # UPDATE STOCK
+            # ==================================================
 
             elif choice == "2":
 
-                product_id = int(
-                    input("Product ID: ")
-                )
+                product_id = input(
+                    "Product ID: "
+                ).strip()
 
                 quantity = int(
-                    input("New Quantity: ")
+                    input(
+                        "New Quantity: "
+                    )
                 )
 
                 update_stock(
@@ -64,31 +91,48 @@ def main():
                     quantity
                 )
 
-                print("✅ Stock updated successfully")
+                print(
+                    "Stock updated successfully."
+                )
 
+            # ==================================================
+            # REMOVE PRODUCT
+            # ==================================================
 
             elif choice == "3":
 
-                product_id = int(
-                    input("Product ID: ")
-                )
+                product_id = input(
+                    "Product ID: "
+                ).strip()
 
                 remove_product(
                     inventory,
                     product_id
                 )
 
-                print("✅ Product removed successfully")
+                print(
+                    "Product removed successfully."
+                )
 
+            # ==================================================
+            # VIEW INVENTORY
+            # ==================================================
 
             elif choice == "4":
 
-                display_inventory(inventory)
+                display_inventory(
+                    inventory
+                )
 
+            # ==================================================
+            # SEARCH
+            # ==================================================
 
             elif choice == "5":
 
-                name = input("Enter Product name: ")
+                name = input(
+                    "Enter Product name: "
+                ).strip()
 
                 results = search_product(
                     inventory,
@@ -96,26 +140,47 @@ def main():
                 )
 
                 if results:
-                    display_inventory(results)
-                else:
-                    print("❌ Product not found")
 
+                    display_inventory(
+                        results
+                    )
+
+                else:
+
+                    print(
+                        "Product not found."
+                    )
+
+            # ==================================================
+            # EXIT
+            # ==================================================
 
             elif choice == "6":
 
-                print("Application closed.")
+                print(
+                    "Application closed."
+                )
+
                 break
 
+            # ==================================================
+            # INVALID OPTION
+            # ==================================================
 
             else:
 
-                print("❌ Invalid choice")
-
+                print(
+                    "Invalid choice."
+                )
 
         except ValueError as error:
 
-            print("❌ Error:", error)
+            print(
+                "Error:",
+                error
+            )
 
 
 if __name__ == "__main__":
+
     main()
